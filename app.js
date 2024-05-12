@@ -12,7 +12,8 @@ const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');
 const brandRouter = require('./routes/brandRoutes');
 const categoryRouter = require('./routes/categoryRoutes');
-const commentRouter = require('./routes/commentRoutes')
+const commentRouter = require('./routes/commentRoutes');
+const sliderRouter = require('./routes/sliderRoutes');
 
 const app = express();
 
@@ -71,6 +72,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/brands', brandRouter);
 app.use('/api/v1/categories', categoryRouter);
 app.use('/api/v1/comments', commentRouter);
+app.use('/api/v1/slider', sliderRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
