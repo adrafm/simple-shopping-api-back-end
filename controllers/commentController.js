@@ -2,7 +2,7 @@ const Comment = require('./../models/commentModel');
 const apiFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
 
-exports.getComment = catchAsync(async (req, res, next) => {
+exports.getComments = catchAsync(async (req, res, next) => {
     const comments = Comment.find({'$id': req.params.prodcutId});
 
     res.status(200).json({
