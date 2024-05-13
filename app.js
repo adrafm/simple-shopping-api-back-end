@@ -76,7 +76,7 @@ app.use('/api/v1/categories', categoryRouter);
 app.use('/api/v1/comments', commentRouter);
 app.use('/api/v1/slider', sliderRouter);
 app.use('/api/v1/cart', cartRouter);
-app.use('/api/v1/order', orderRoutes);
+app.use('/api/v1/orders', orderRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

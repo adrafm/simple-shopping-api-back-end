@@ -10,12 +10,12 @@ exports.updateBrand = factory.updateOne(Brand);
 exports.deleteBrand = factory.deleteOne(Brand);
 
 exports.getAllBrands = catchAsync(async (req, res, next) => {
-  const brands = new APIFeatures(Brand.find())
-  
+  const brands = await Brand.find()
+  console.log(brands);
     // SEND RESPONSE
   res.status(200).json({
     status: 'success',
-    results: products.length,
+    results: brands.length,
     data: {
       brands
     }

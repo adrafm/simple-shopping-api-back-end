@@ -6,7 +6,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(authController.protect, brandController.getAllBrands)
+  .get(brandController.getAllBrands)
   .post(brandController.createBrand);
 
 router
