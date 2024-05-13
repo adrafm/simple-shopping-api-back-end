@@ -58,6 +58,42 @@ exports.getUserOrders = catchAsync(async (req, res, next) => {
     });
 });
 
+exports.getTopSellingProducts = catchAsync(async (req, res, next) => {
+    const products = await Order.aggregate([
+        {
+            "$unwind": "$items"
+        },
+        {
+            "$group": {
+                "_id": "$items.itemId",
+                "sum": {
+                    "$sum": "$items.qty"
+                }
+            }
+        },
+        {
+            "$sort": {
+                sum: -1
+            }
+        },
+        {
+            "$group": {
+                "_id": null,
+                "top_selling_products": {
+                    $push: "$$ROOT"
+                }
+            }
+        }
+    ]);
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            products
+        }
+    });
+});
+
 exports.getMonthlyIncome = catchAsync(async (req, res, next) => {
     const date = new Date();
     const lastMonth = new Date(date.setMonth(date.getMonth) - 1);

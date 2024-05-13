@@ -8,5 +8,6 @@ router.route('/').post(authController.protect, orderController.createOrder).get(
 router.route('/:id').put(authController.protect, orderController.updateOrder).delete(authController.protect, orderController.deleteOrder);
 router.route('/find/:userId').get(authController.protect, orderController.getUserOrders);
 router.route('/income').get(authController.restrictTo('admin'), orderController.getMonthlyIncome);
+router.route('/topSellingProducts').get(orderController.getTopSellingProducts);
 
 module.exports = router;
